@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Animation Effect </title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        section{
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #130e23;
+            overflow: hidden;
+        }
+
+        section .text{
+            position: relative;
+            text-align: center;
+            color: #00cefe;
+            max-width: 700px;
+        }
+
+        section .text span{
+            position: relative;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque nihil ex quas soluta commodi quos in qui repellat repudiandae doloremque facilis iusto, praesentium, vitae veritatis omnis distinctio nulla minima adipisci, fuga laboriosam dolorem quidem fugiat. Ab sunt ad omnis officia incidunt facere sit aliquid, ipsa maiores? Tempora nemo dicta vitae. Expedita, minus optio, blanditiis repellat quis iste itaque totam, saepe dolorum iure esse porro recusandae quo? Expedita praesentium quod saepe sapiente quis, excepturi est, quidem necessitatibus ad maiores minima cupiditate a hic! Debitis quis aliquam illo neque ratione eius aut, eveniet fuga officia molestiae eum, sequi quaerat ipsum eligendi animi iure esse saepe consequuntur? Totam aperiam sed reiciendis quas, at ipsum ab ex doloremque sapiente. Veritatis unde nemo sequi! Iure dolores deleniti nemo iste omnis? Iusto nemo rerum earum sunt, repellendus itaque, cupiditate quo sit eum ut culpa deserunt. Recusandae quae corporis alias animi. Enim labore nihil iste. Omnis, aperiam.</p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        var text = document.querySelector('.text');
+        text.innerHTML = text.textContent.replace(/\S/g , "<span>$&</span>")
+
+        var animation = anime.timeline({
+            targets : ".text span",
+            loop : true,
+            easing : "easeInOutExpo",
+        })
+
+        .add({
+            rotate : function(){
+                return anime.random(-360 , 360)
+            },
+            translateX : function(){
+                return anime.random(-500 , 500)
+            },
+            translateY : function(){
+                return anime.random(-500 , 500)
+            },
+            duration : 5000,
+            delay : anime.stagger(20)
+        })
+
+        .add({
+            rotate : 0,
+            translateX : 0,
+            translateY : 0,
+            duration : 5000,
+            delay : anime.stagger(20)
+        })
+    </script>
+</body>
+</html>
